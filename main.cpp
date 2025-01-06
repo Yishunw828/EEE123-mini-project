@@ -1,7 +1,5 @@
 #include <iostream>
 #include <string>
-#include "main.hpp"
-
 using namespace std;
 
 const int MAX_PATIENTS = 100; 
