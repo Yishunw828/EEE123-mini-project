@@ -24,26 +24,26 @@ void registerPatient(Patient patients[], int &count) {
 
     Patient newPatient;
 
-cout << "Enter patient name: ";
+cout << "\nEnter patient name: ";
 cin.ignore(); 
 getline(cin, newPatient.name);
 
 cout << "Enter patient age: ";
 cin >> newPatient.age;
 
-cout << "Enter patient IC number: ";
+cout << "Enter patient IC number (without -): ";
 cin >> newPatient.icNumber;
 
-cout << "Enter patient gender : ";
+cout << "Enter patient gender (Male/Female): ";
 cin >> newPatient.gender;
 
-cout << "Enter patient contact number: ";
+cout << "Enter patient contact number (XXX-XXXXXXX): ";
 cin >> newPatient.contactNumber;
 
 cout << "Enter reason for admission: ";
 cin >> newPatient.admissionReason;
 
-cout << "Enter ward number: ";
+cout << "Enter ward number (XXXX): ";
 cin >> newPatient.wardNumber;
 
     patients[count] = newPatient;
@@ -124,11 +124,13 @@ int main() {
 
 
     do {
-        cout << "\nWard Admission System\n";
+        cout << "\n---------------------------------------------\n";
+        cout << "Ward Admission System\n";
         cout << "1. Register a new patient\n";
         cout << "2. Display all patients\n";
         cout << "3. Exit\n";
-        cout << "Enter your choice: ";
+        cout << "---------------------------------------------\n";
+        cout << "\nEnter your choice > ";
         cin >> choice;
 
         switch (choice) {
