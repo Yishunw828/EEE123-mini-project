@@ -74,10 +74,54 @@ void displayPatients(const Patient patients[], int count) {
     }
 }
 
+void displayMenu() {
+    cout << "\n===== Ward Admission System =====" << endl;
+    cout << "1. Add Admission Note" << endl;
+    cout << "2. View All Admission Notes" << endl;
+    cout << "3. Exit" << endl;
+    cout << "Enter your choice: ";
+}
+
+int addAdmissionNote(string patientNames[], string reasons[], int count, int maxNotes) {
+    if (count >= maxNotes) {
+        cout << "\nMaximum number of admission notes reached!" << endl;
+        return count;
+    }
+
+    cin.ignore();
+
+    cout << "Enter patient name: ";
+    getline(cin, patientNames[count]);
+
+    cout << "Enter reason for admission: ";
+    getline(cin, reasons[count]);
+
+    cout << "\nAdmission note added successfully!" << endl;
+    return count + 1;
+}
+
+void viewAdmissionNotes(const string patientNames[], const string reasons[], int count) {
+    if (count == 0) {
+        cout << "\nNo admission notes available." << endl;
+        return;
+    }
+
+    cout << "\n===== Admission Notes =====" << endl;
+    for (int i = 0; i < count; ++i) {
+        cout << i + 1 << ". Patient Name: " << patientNames[i] << endl;
+        cout << "   Reason: " << reasons[i] << endl;
+    }
+}
+
 int main() {
     Patient patients[MAX_PATIENTS];
     int patientCount = 0;
     int choice;
+    const int maxNotes = 100;
+    string patientNames[maxNotes];
+    string reasons[maxNotes];
+    int count = 0;
+
 
     do {
         cout << "\nWard Admission System\n";
@@ -101,6 +145,26 @@ int main() {
                 cout << "Invalid choice. Please try again.\n";
         }
     } while (choice != 3);
+    
+    do {
+        displayMenu();
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                count = addAdmissionNote(patientNames, reasons, count, maxNotes);
+                break;
+            case 2:
+                viewAdmissionNotes(patientNames, reasons, count);
+                break;
+            case 3:
+                cout << "\nExiting the system. Goodbye!" << endl;
+                break;
+            default:
+                cout << "\nInvalid choice. Please try again." << endl;
+        }
+    } while (choice != 3);
 
     return 0;
 }
+
