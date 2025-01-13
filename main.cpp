@@ -1,57 +1,91 @@
 #include <iostream>
 #include <string>
+#include <limits>
 using namespace std;
 
-const int MAX_PATIENTS = 100; 
-
+const int MAX_PATIENTS = 100;
 
 struct Patient {
     string name;
     int age;
-    string icNumber; 
+    string icNumber;
     string gender;
     string contactNumber;
     string admissionReason;
     string wardNumber;
 };
 
+bool isValidNumber(const string &input) {
+    for (char c : input) {
+        if (!isdigit(c)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool isValidGender(const string &gender) {
+    return gender == "Male" ; gender == "Female" ; gender == "male" || gender == "female";
+}
 
 void registerPatient(Patient patients[], int &count) {
     if (count >= MAX_PATIENTS) {
-        cout << " Maximum capacity reached.\n";
+        cout << "Maximum capacity reached.\n";
         return;
     }
 
     Patient newPatient;
 
-cout << "\nEnter patient name: ";
-cin.ignore(); 
-getline(cin, newPatient.name);
+    cout << "Enter patient name: ";
+    cin.ignore(); 
+    getline(cin, newPatient.name);
+    while (newPatient.name.empty()) {
+        cout << "Name cannot be empty. Enter patient name: ";
+        getline(cin, newPatient.name);
+    }
 
-cout << "Enter patient age: ";
-cin >> newPatient.age;
+    string ageInput;
+    cout << "Enter patient age: ";
+    cin >> ageInput;
+    while (!isValidNumber(ageInput)) {
+        cout << "Invalid age. Enter a numeric value for age: ";
+        cin >> ageInput;
+    }
+    newPatient.age = stoi(ageInput);
 
-cout << "Enter patient IC number (without -): ";
-cin >> newPatient.icNumber;
+    cout << "Enter patient IC number(without -): ";
+    cin >> newPatient.icNumber;
+    while (!isValidNumber(newPatient.icNumber)) {
+        cout << "Invalid IC number. Enter a numeric value: ";
+        cin >> newPatient.icNumber;
+    }
 
-cout << "Enter patient gender (Male/Female): ";
-cin >> newPatient.gender;
+    cout << "Enter patient gender (Male/Female): ";
+    cin >> newPatient.gender;
+    while (!isValidGender(newPatient.gender)) {
+        cout << "Invalid gender. Enter 'Male' or 'Female': ";
+        cin >> newPatient.gender;
+    }
 
-cout << "Enter patient contact number (XXX-XXXXXXX): ";
-cin >> newPatient.contactNumber;
+    cout << "Enter patient contact number(XXX-XXXXXXX): ";
+    cin >> newPatient.contactNumber;
+    while (!isValidNumber(newPatient.contactNumber)) {
+        cout << "Invalid contact number. Enter a numeric value: ";
+        cin >> newPatient.contactNumber;
+    }
 
-cout << "Enter reason for admission: ";
-cin >> newPatient.admissionReason;
+    cout << "Enter reason for admission: ";
+    cin.ignore(); 
+    getline(cin, newPatient.admissionReason);
 
-cout << "Enter ward number (XXXX): ";
-cin >> newPatient.wardNumber;
+    cout << "Enter ward number(XXXX): ";
+    getline(cin, newPatient.wardNumber);
 
     patients[count] = newPatient;
     count++;
 
     cout << "Patient registered successfully!\n\n";
 }
-
 
 void displayPatients(const Patient patients[], int count) {
     if (count == 0) {
@@ -74,63 +108,17 @@ void displayPatients(const Patient patients[], int count) {
     }
 }
 
-void displayMenu() {
-    cout << "\n===== Ward Admission System =====" << endl;
-    cout << "1. Add Admission Note" << endl;
-    cout << "2. View All Admission Notes" << endl;
-    cout << "3. Exit" << endl;
-    cout << "Enter your choice: ";
-}
-
-int addAdmissionNote(string patientNames[], string reasons[], int count, int maxNotes) {
-    if (count >= maxNotes) {
-        cout << "\nMaximum number of admission notes reached!" << endl;
-        return count;
-    }
-
-    cin.ignore();
-
-    cout << "Enter patient name: ";
-    getline(cin, patientNames[count]);
-
-    cout << "Enter reason for admission: ";
-    getline(cin, reasons[count]);
-
-    cout << "\nAdmission note added successfully!" << endl;
-    return count + 1;
-}
-
-void viewAdmissionNotes(const string patientNames[], const string reasons[], int count) {
-    if (count == 0) {
-        cout << "\nNo admission notes available." << endl;
-        return;
-    }
-
-    cout << "\n===== Admission Notes =====" << endl;
-    for (int i = 0; i < count; ++i) {
-        cout << i + 1 << ". Patient Name: " << patientNames[i] << endl;
-        cout << "   Reason: " << reasons[i] << endl;
-    }
-}
-
 int main() {
     Patient patients[MAX_PATIENTS];
     int patientCount = 0;
     int choice;
-    const int maxNotes = 100;
-    string patientNames[maxNotes];
-    string reasons[maxNotes];
-    int count = 0;
-
 
     do {
-        cout << "\n---------------------------------------------\n";
-        cout << "Ward Admission System\n";
+        cout << "\nWard Admission System\n";
         cout << "1. Register a new patient\n";
         cout << "2. Display all patients\n";
         cout << "3. Exit\n";
-        cout << "---------------------------------------------\n";
-        cout << "\nEnter your choice > ";
+        cout << "Enter your choice: ";
         cin >> choice;
 
         switch (choice) {
@@ -147,26 +135,6 @@ int main() {
                 cout << "Invalid choice. Please try again.\n";
         }
     } while (choice != 3);
-    
-    do {
-        displayMenu();
-        cin >> choice;
-
-        switch (choice) {
-            case 1:
-                count = addAdmissionNote(patientNames, reasons, count, maxNotes);
-                break;
-            case 2:
-                viewAdmissionNotes(patientNames, reasons, count);
-                break;
-            case 3:
-                cout << "\nExiting the system. Goodbye!" << endl;
-                break;
-            default:
-                cout << "\nInvalid choice. Please try again." << endl;
-        }
-    } while (choice != 3);
 
     return 0;
 }
-

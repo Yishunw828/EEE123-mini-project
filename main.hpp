@@ -1,4 +1,4 @@
+bool isValidGender(const string &gender);
+bool isValidNumber(const string &input);
+void displayPatients(const Patient patients[], int count) ;
 void registerPatient(Patient patients[], int &count);
-void displayPatients(const Patient patients[], int count);
-int addAdmissionNote(string patientNames[], string reasons[], int count, int maxNotes);
-void viewAdmissionNotes(const string patientNames[], const string reasons[], int count);
