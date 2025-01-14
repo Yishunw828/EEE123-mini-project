@@ -114,7 +114,51 @@ int main() {
     int choice;
 
     do {
-        cout << "\nWard Admission System\n";
+        cout << "\nMenu of the system";
+        cout << "\n1. Ward Admission System";
+        cout << "\n2. Seaching Record";
+        cout << "\n3. Exit";
+        cout << "\n\nEnter the number for the system > \n";
+
+        switch (choice) {
+            case 1:
+                cout << "1. Register a new patient\n";
+                cout << "2. Display all patients\n";
+                cout << "3. Exit\n";
+                cout << "Enter your choice: ";
+                cin >> choice;
+
+        switch (choice) {
+            case 1:
+                registerPatient(patients, patientCount);
+                break;
+            case 2:
+                displayPatients(patients, patientCount);
+                break;
+            case 3:
+                cout << "System exited.\n";
+                break;
+            default:
+                cout << "Invalid choice. Please try again.\n";
+        }
+    } while (choice != 3);;
+                break;
+            case 2:
+                ;
+                break;
+            case 3:
+                cout << "System exited.\n";
+                break;
+            default:
+                cout << "Invalid choice. Please try again.\n";
+        }
+    } while (choice != 3);
+
+    return 0;
+}
+
+
+
         cout << "1. Register a new patient\n";
         cout << "2. Display all patients\n";
         cout << "3. Exit\n";
