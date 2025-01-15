@@ -11,7 +11,60 @@ using namespace std;
 class WardAdmissionSystem {
 public:
     void Add_Patient();
+    void Display_Patient_File();
  
+
+int main() {
+    WardAdmissionSystem system;
+    system.loadRecordsFromFile();
+
+    int choice;
+
+    do {
+        cout << "\n---------------------------------------------\n";
+        cout << "Welcome to the Ward Admission System\n";
+        cout << "1. Add a New Patient Record\n";
+        cout << "2. Display All Patient Records\n";
+        cout << "3. Search Patient Records\n";
+        cout << "4. Exit\n";
+        cout << "---------------------------------------------\n";
+        cout << "\nEnter your choice: ";
+        cin >> choice;
+        cin.ignore();
+
+        switch (choice) {
+        case 1:
+            system.Add_Patient();
+            break;
+
+        case 2:
+            system.Display_Patient_File();
+            break;
+
+        case 3: {
+            string name, ward;
+            cout << "Enter patient name to search: ";
+            getline(cin, name);
+            cout << "Enter ward number to search: ";
+            getline(cin, ward);
+
+            system.searchRecords(name, ward);
+            break;
+        }
+
+        case 4:
+            system.saveRecordsToFile();
+            cout << "Exiting the system.\n";
+            break;
+
+        default:
+            cout << "Invalid choice. Please try again.\n";
+        }
+    } while (choice != 4);
+
+    return 0;
+}
+
 struct PatientRecord {
     string name;
     int age;
@@ -70,24 +123,6 @@ PatientRecord record;
         outfile.close();
     }
     }
-    
-    void displayAllRecords() const {
-        if (records.empty()) {
-            cout << "No patient records available.\n";
-            return;
-        }
-
-        for (const auto& record : records) {
-            cout << "Name: " << record.name << "\n";
-            cout << "Age: " << record.age << "\n";
-            cout << "IC Number: " << record.icNumber << "\n";
-            cout << "Gender: " << record.gender << "\n";
-            cout << "Contact Number: " << record.contactNumber << "\n";
-            cout << "Reason for Admission: " << record.reasonForAdmission << "\n";
-            cout << "Ward: " << record.ward << "\n";
-            cout << "---------------------------------------------\n";
-        }
-    }
 
     void searchRecords(const string& searchName = "", const string& searchWard = "") {
         cout << "\nSearch Results:\n";
@@ -113,54 +148,3 @@ PatientRecord record;
         }
     }
 };
-
-int main() {
-    WardAdmissionSystem system;
-    system.loadRecordsFromFile();
-
-    int choice;
-
-    do {
-        cout << "\n---------------------------------------------\n";
-        cout << "Welcome to the Ward Admission System\n";
-        cout << "1. Add a New Patient Record\n";
-        cout << "2. Display All Patient Records\n";
-        cout << "3. Search Patient Records\n";
-        cout << "4. Exit\n";
-        cout << "---------------------------------------------\n";
-        cout << "\nEnter your choice: ";
-        cin >> choice;
-        cin.ignore();
-
-        switch (choice) {
-        case 1:
-            system.Add_Patient();
-            break;
-
-        case 2:
-            system.displayAllRecords();
-            break;
-
-        case 3: {
-            string name, ward;
-            cout << "Enter patient name to search: ";
-            getline(cin, name);
-            cout << "Enter ward number to search: ";
-            getline(cin, ward);
-
-            system.searchRecords(name, ward);
-            break;
-        }
-
-        case 4:
-            system.saveRecordsToFile();
-            cout << "Exiting the system.\n";
-            break;
-
-        default:
-            cout << "Invalid choice. Please try again.\n";
-        }
-    } while (choice != 4);
-
-    return 0;
-}
