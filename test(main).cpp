@@ -1,74 +1,17 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <fstream>
 #include <algorithm>
+#include "AddPatient.cpp"
+#include "Display_Patient.cpp"
 
 using namespace std;
 
-int main() {
-    WardAdmissionSystem system;
-    int choice;
-
-    do {
-        cout << "\n---------------------------------------------\n";
-        cout << "Welcome to the Ward Admission System\n";
-        cout << "1. Add a New Patient Record\n";
-        cout << "2. Display All Patient Records\n";
-        cout << "3. Search Patient Records\n";
-        cout << "4. Exit\n";
-        cout << "---------------------------------------------\n";
-        cout << "\nEnter your choice: ";
-        cin >> choice;
-        cin.ignore(); // Clear the newline character from the input buffer
-
-        switch (choice) {
-        case 1: {
-            string name, icNumber, gender, contactNumber, reason, ward;
-            int age;
-
-            cout << "Enter patient name: ";
-            getline(cin, name);
-            cout << "Enter patient age: ";
-            cin >> age;
-            cin.ignore();
-            cout << "Enter patient IC number(without -): ";
-            getline(cin, icNumber);
-            cout << "Enter patient gender (Male/Female): ";
-            getline(cin, gender);
-            cout << "Enter patient contact number(without -): ";
-            getline(cin, contactNumber);
-            cout << "Enter reason for admission: ";
-            getline(cin, reason);
-            cout << "Enter ward number: ";
-            getline(cin, ward);
-
-            system.addRecord(name, age, icNumber, gender, contactNumber, reason, ward);
-            break;
-        }
-        case 2:
-            system.displayAllRecords();
-            break;
-        case 3: {
-            string name, ward;
-            cout << "Enter patient name to search : ";
-            getline(cin, name);
-            cout << "Enter ward number to search : ";
-            getline(cin, ward);
-
-            system.searchRecords(name, ward);
-            break;
-        }
-        case 4:
-            cout << "Exiting the system.\n";
-            break;
-        default:
-            cout << "Invalid choice. Please try again.\n";
-        }
-    } while (choice != 4);
-
-    return 0;
-}
-
+class WardAdmissionSystem {
+public:
+    void Add_Patient();
+ 
 struct PatientRecord {
     string name;
     int age;
@@ -78,25 +21,62 @@ struct PatientRecord {
     string reasonForAdmission;
     string ward;
 };
-
-class WardAdmissionSystem {
-private:
-    vector<PatientRecord> records;
-
-public:
-    void addRecord(const string& name, int age, const string& icNumber, const string& gender, const string& contactNumber, const string& reason, const string& ward) {
-        records.push_back({name, age, icNumber, gender, contactNumber, reason, ward});
-        cout << "Patient record added successfully!\n";
-    }
-
-    void displayAllRecords() {
-        if (records.empty()) {
-            cout << "No records to display.\n";
+PatientRecord record;
+ vector<PatientRecord> records;
+    void loadRecordsFromFile() {
+        ifstream infile("patients.txt");
+        if (!infile.is_open()) {
+            cout << "No existing patient records found.\n";
             return;
         }
 
-        cout << "\nAll Patient Records:\n";
-        cout << "---------------------------------------------\n";
+        else {
+        string line;
+        while (getline(infile, line)) {
+            
+            record.name = line;
+            getline(infile, line);
+            record.age = stoi(line);
+            getline(infile, record.icNumber);
+            getline(infile, record.gender);
+            getline(infile, record.contactNumber);
+            getline(infile, record.reasonForAdmission);
+            getline(infile, record.ward);
+            records.push_back(record);
+        }
+
+        infile.close();
+        }
+    }
+
+    void saveRecordsToFile() const {
+        ofstream outfile("patients.txt",ios::app);
+        if (!outfile.is_open()) {
+            cout << "Error: Unable to save records to file.\n";
+            return;
+        }
+    
+    
+    else{
+            outfile << record.name << "\n";
+            outfile << record.age << "\n";
+            outfile << record.icNumber << "\n";
+            outfile << record.gender << "\n";
+            outfile << record.contactNumber << "\n";
+            outfile << record.reasonForAdmission << "\n";
+            outfile << record.ward << "\n";
+        
+
+        outfile.close();
+    }
+    }
+    
+    void displayAllRecords() const {
+        if (records.empty()) {
+            cout << "No patient records available.\n";
+            return;
+        }
+
         for (const auto& record : records) {
             cout << "Name: " << record.name << "\n";
             cout << "Age: " << record.age << "\n";
@@ -134,3 +114,53 @@ public:
     }
 };
 
+int main() {
+    WardAdmissionSystem system;
+    system.loadRecordsFromFile();
+
+    int choice;
+
+    do {
+        cout << "\n---------------------------------------------\n";
+        cout << "Welcome to the Ward Admission System\n";
+        cout << "1. Add a New Patient Record\n";
+        cout << "2. Display All Patient Records\n";
+        cout << "3. Search Patient Records\n";
+        cout << "4. Exit\n";
+        cout << "---------------------------------------------\n";
+        cout << "\nEnter your choice: ";
+        cin >> choice;
+        cin.ignore();
+
+        switch (choice) {
+        case 1:
+            system.Add_Patient();
+            break;
+
+        case 2:
+            system.displayAllRecords();
+            break;
+
+        case 3: {
+            string name, ward;
+            cout << "Enter patient name to search: ";
+            getline(cin, name);
+            cout << "Enter ward number to search: ";
+            getline(cin, ward);
+
+            system.searchRecords(name, ward);
+            break;
+        }
+
+        case 4:
+            system.saveRecordsToFile();
+            cout << "Exiting the system.\n";
+            break;
+
+        default:
+            cout << "Invalid choice. Please try again.\n";
+        }
+    } while (choice != 4);
+
+    return 0;
+}

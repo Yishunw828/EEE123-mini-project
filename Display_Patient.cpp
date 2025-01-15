@@ -47,10 +47,4 @@ class Display_Patient
         }
 };
 
-int main()
-{
-    Display_Patient dp;
-    dp.Display_Patient_File();
 
-    return 0;
-}
