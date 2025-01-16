@@ -10,7 +10,7 @@ using namespace std;
 
 void removePatient() {
     string nameToRemove;
-    cout << "Enter patient name to remove: ";
+    cout << "\nEnter patient name to remove: ";
     cin.ignore();
     getline(cin, nameToRemove);
 

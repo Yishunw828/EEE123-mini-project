@@ -17,7 +17,7 @@ void admitPatient() {
     string name, ic, gender, contact, reason, date, ward;
     int age;
 
-    cout << "Enter Patient Name: ";
+    cout << "\nEnter Patient Name: ";
     cin.ignore();
     getline(cin, name); 
 
@@ -43,5 +43,5 @@ void admitPatient() {
     file << name << "," << age << "," << ic << "," << gender << "," << contact << "," << reason << "," << date << "," << ward << endl;
     file.close();
 
-    cout << "Patient admitted successfully!\n";
+    cout << "\nPatient admitted successfully!\n";
 }

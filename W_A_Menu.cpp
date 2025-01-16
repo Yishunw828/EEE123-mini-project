@@ -13,11 +13,11 @@ using namespace std;
 void wardAdmissionMenu() {
     int choice;
     while (true) {
-        cout << "\n--- Ward Admission Menu ---\n";
+        cout << "\nPlease select the number\n";
         cout << "1. Admit Patient\n";
         cout << "2. Remove Patient\n";
         cout << "3. Return to menu\n";
-        cout << "Enter your choice: ";
+        cout << "\nEnter your choice: ";
         cin >> choice;
 
         switch (choice) {

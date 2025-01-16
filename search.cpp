@@ -41,7 +41,7 @@ void searchByName() {
     }
 
     string name, line;
-    cout << "Enter Patient Name to search: ";
+    cout << "\nEnter Patient Name to search: ";
     getline(cin, name);
 
     bool found = false;

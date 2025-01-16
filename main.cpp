@@ -18,7 +18,7 @@ int main() {
         cout << "1. Ward Admission\n";
         cout << "2. Searching Record\n";
         cout << "3. Exit\n";
-        cout << "Enter your choice: ";
+        cout << "\nEnter your choice > ";
         cin >> choice;
 
         switch (choice) {
@@ -29,11 +29,11 @@ int main() {
                 searchingRecordMenu();
                 break;
             case 3:
-                cout << "Exiting system...\n";
+                cout << "\nExiting system...\n";
                 running = false;
                 break;
             default:
-                cout << "Invalid choice! Please enter again.\n";
+                cout << "\nInvalid choice! Please enter again.\n";
         }
     }
 
