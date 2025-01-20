@@ -20,7 +20,7 @@ void removePatient() {
         return;
     }
 
-    ofstream tempFile("temp.txt"); // Temporary file to store updated records
+    ofstream tempFile("temp.txt"); 
     string line;
     bool found = false;
 
@@ -30,7 +30,7 @@ void removePatient() {
         getline(record, name, ',');
 
         if (name != nameToRemove) {
-            tempFile << line << endl; // Keep the record if it's not the one to remove
+            tempFile << line << endl; 
         } else {
             found = true;
         }
@@ -40,11 +40,11 @@ void removePatient() {
     tempFile.close();
 
     if (found) {
-        remove("patients.txt");          // Delete old file
-        rename("temp.txt", "patients.txt"); // Rename temp file to original
+        remove("patients.txt");          
+        rename("temp.txt", "patients.txt"); 
         cout << "Patient '" << nameToRemove << "' has been removed successfully.\n";
     } else {
-        remove("temp.txt"); // Clean up if no match found
+        remove("temp.txt"); 
         cout << "Patient not found!\n";
     }
 }

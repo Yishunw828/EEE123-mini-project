@@ -60,7 +60,7 @@ void admitPatient() {
     string name, ic, gender, contact, reason, date;
     int age;
 
-    cout << "\nEnter Patient Name: ";
+    cout << "\nEnter Patient Full Name as per IC: ";
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
     getline(cin, name);
 
@@ -78,7 +78,7 @@ void admitPatient() {
     cout << "Enter Gender (Male/Female): ";
     getline(cin, gender);
 
-    cout << "Enter Contact Number: ";
+    cout << "Enter Contact Number (without -): ";
     getline(cin, contact);
 
     cout << "Enter Admission Reason: ";
