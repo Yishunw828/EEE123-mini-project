@@ -50,7 +50,7 @@ int main() {
                 running = false; 
                 break; 
             default: 
-                cout << "\nInvalid choice! Please enter again.\n"; 
+                cout << "\nInvalid choice! Please enter a number between 1 and 3.\n"; 
                 break; 
         } 
     } 
