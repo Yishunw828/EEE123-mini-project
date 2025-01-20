@@ -17,7 +17,7 @@ void searchingRecordMenu() {
         cout << "1. Search Patient\n";
         cout << "2. Display All Records\n";
         cout << "3. Return to menu\n";
-        cout << "Enter your choice: ";
+        cout << "\nEnter your choice > ";
         cin >> choice;
 
         switch (choice) {
@@ -28,8 +28,7 @@ void searchingRecordMenu() {
                 displayAllRecords();
                 break;
             case 3:
-                return; // Return to main menu
-            default:
+                return; 
                 cout << "Invalid choice! Please enter again.\n";
         }
     }

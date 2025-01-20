@@ -31,7 +31,6 @@ int main() {
             } 
         } 
  
-        //check character 
         if (!isValid) { 
             cout << "\nInvalid input! Please enter a valid number.\n"; 
             continue; 

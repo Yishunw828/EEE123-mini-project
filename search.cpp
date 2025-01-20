@@ -8,13 +8,13 @@
 
 using namespace std;
 
-void searchMenu() {
+void searchMenu(){
     int choice;
     cout << "\nSearch Patient Record By:\n";
     cout << "1. Name\n";
     cout << "2. Ward Number\n";
     cout << "3. Admission Date\n";
-    cout << "Enter your choice: ";
+    cout << "\nEnter your choice > ";
     cin >> choice;
     cin.ignore();
 

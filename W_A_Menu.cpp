@@ -17,7 +17,7 @@ void wardAdmissionMenu() {
         cout << "1. Admit Patient\n";
         cout << "2. Remove Patient\n";
         cout << "3. Return to menu\n";
-        cout << "\nEnter your choice: ";
+        cout << "\nEnter your choice > ";
         cin >> choice;
 
         switch (choice) {
@@ -28,9 +28,9 @@ void wardAdmissionMenu() {
                 removePatient();
                 break;
             case 3:
-                return; // 
+                return; 
             default:
-                cout << "Invalid choice! Please enter again.\n";
+                cout << "\nInvalid choice! Please enter again.\n";
         }
     }
 }
