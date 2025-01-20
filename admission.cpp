@@ -87,9 +87,8 @@ void admitPatient() {
     cout << "Enter Admission Date (DD/MM/YYYY): ";
     getline(cin, date);
 
-    file << name << "," << age << "," << ic << "," << gender << "," << contact << "," 
-         << reason << "," << date << "," << ward << endl;
+    file << name << "," << age << "," << ic << "," << gender << "," << contact << "," << reason << "," << date << ",W" << ward << endl;
     file.close();
 
-    cout << "\nPatient admitted successfully! Assigned ward number: " << ward << "\n";
+    cout << "\nPatient admitted successfully! Assigned ward number: W" << ward << "\n";
 }
