@@ -10,13 +10,13 @@ using namespace std;
 
 void removePatient() {
     string nameToRemove;
-    cout << "\nEnter patient name to remove: ";
+    cout << "\033[1;36m\nEnter patient name to remove: \033[0m";
     cin.ignore();
     getline(cin, nameToRemove);
 
     ifstream file("patients.txt");
     if (!file) {
-        cout << "Error opening file or no records found!" << endl;
+        cout << "\033[1;31mError opening file or no records found!\033[0m" << endl;
         return;
     }
 
@@ -42,9 +42,9 @@ void removePatient() {
     if (found) {
         remove("patients.txt");          
         rename("temp.txt", "patients.txt"); 
-        cout << "Patient '" << nameToRemove << "' has been removed successfully.\n";
+        cout << "\033[1;32mPatient '" << nameToRemove << "' has been removed successfully.\033[0m\n";
     } else {
         remove("temp.txt"); 
-        cout << "Patient not found!\n";
+        cout << "\033[1;31mPatient not found!\033[0m\n";
     }
 }

@@ -13,7 +13,7 @@ void searchMenu() {
     int choice; 
     string input; 
      
-    cout << "\nSearch Patient Record By:\n"; 
+    cout << "\033[1;36m\nSearch Patient Record By:\033[0m\n"; 
     cout << "1. Name\n"; 
     cout << "2. Ward Number\n"; 
     cout << "3. Admission Date\n"; 
@@ -30,7 +30,7 @@ void searchMenu() {
     } 
  
     if (!isValid) { 
-        cout << "\nInvalid input! Please enter a valid number.\n"; 
+        cout << "\033[1;31m\nInvalid input! Please enter a valid number.\033[0m\n"; 
         return; 
     } 
  
@@ -47,19 +47,19 @@ void searchMenu() {
             searchByDate(); 
             break; 
         default: 
-            cout << "\nInvalid choice! Please select a valid option.\n"; 
+            cout << "\033[1;31m\nInvalid choice! Please select a valid option.\033[0m\n"; 
     } 
 } 
  
 void searchByName() { 
     ifstream file("patients.txt"); 
     if (!file) { 
-        cout << "\nError opening file!" << endl; 
+        cout << "\033[1;31m\nError opening file!\033[0m" << endl; 
         return; 
     } 
  
     string name, line; 
-    cout << "\nEnter Patient Name to search: "; 
+    cout << "\033[1;36m\nEnter Patient Name to search: \033[0m"; 
     getline(cin, name); 
  
     bool found = false; 
@@ -77,20 +77,20 @@ void searchByName() {
             getline(record, date, ','); 
             getline(record, ward, ','); 
  
-            cout << "\nPatient Name: " << name 
-                 << "\nAge: " << age 
-                 << "\nIC Number: " << ic 
-                 << "\nGender: " << gender 
-                 << "\nContact Number: " << contact 
-                 << "\nAdmission Reason: " << reason 
-                 << "\nAdmission Date: " << date 
-                 << "\nWard Number: " << ward 
+            cout << "\033[1;32m\nPatient Name: \033[0m" << name 
+                 << "\n\033[1;32mAge: \033[0m" << age 
+                 << "\n\033[1;32mIC Number: \033[0m" << ic 
+                 << "\n\033[1;32mGender: \033[0m" << gender 
+                 << "\n\033[1;32mContact Number: \033[0m" << contact 
+                 << "\n\033[1;32mAdmission Reason: \033[0m" << reason 
+                 << "\n\033[1;32mAdmission Date: \033[0m" << date 
+                 << "\n\033[1;32mWard Number: \033[0m" << ward 
                  << "\n-------------------------\n"; 
             found = true; 
         } 
     } 
     if (!found) { 
-        cout << "\nNo record found for " << name << ".\n"; 
+        cout << "\033[1;31m\nNo record found for \033[0m" << name << ".\n"; 
     } 
  
     file.close(); 
@@ -99,12 +99,12 @@ void searchByName() {
 void searchByWard() { 
     ifstream file("patients.txt"); 
     if (!file) { 
-        cout << "\nError opening file!" << endl; 
+        cout << "\033[1;31m\nError opening file!\033[0m" << endl; 
         return; 
     } 
  
     string ward, line; 
-    cout << "\nEnter Ward Number to search: "; 
+    cout << "\033[1;36m\nEnter Ward Number to search: \033[0m"; 
     getline(cin, ward); 
  
     bool found = false; 
@@ -122,20 +122,20 @@ void searchByWard() {
             getline(record, date, ','); 
             getline(record, ward, ','); 
  
-            cout << "\nPatient Name: " << name 
-                 << "\nAge: " << age 
-                 << "\nIC Number: " << ic 
-                 << "\nGender: " << gender 
-                 << "\nContact Number: " << contact 
-                 << "\nAdmission Reason: " << reason 
-                 << "\nAdmission Date: " << date 
-                 << "\nWard Number: " << ward 
+            cout << "\033[1;32m\nPatient Name: \033[0m" << name 
+                 << "\n\033[1;32mAge: \033[0m" << age 
+                 << "\n\033[1;32mIC Number: \033[0m" << ic 
+                 << "\n\033[1;32mGender: \033[0m" << gender 
+                 << "\n\033[1;32mContact Number: \033[0m" << contact 
+                 << "\n\033[1;32mAdmission Reason: \033[0m" << reason 
+                 << "\n\033[1;32mAdmission Date: \033[0m" << date 
+                 << "\n\033[1;32mWard Number: \033[0m" << ward 
                  << "\n-------------------------\n"; 
             found = true; 
         } 
     } 
     if (!found) { 
-        cout << "\nNo record found for Ward " << ward << ".\n"; 
+        cout << "\033[1;31m\nNo record found for Ward \033[0m" << ward << ".\n"; 
     } 
  
     file.close(); 
@@ -144,12 +144,12 @@ void searchByWard() {
 void searchByDate() { 
     ifstream file("patients.txt"); 
     if (!file) { 
-        cout << "\nError opening file!" << endl; 
+        cout << "\033[1;31m\nError opening file!\033[0m" << endl; 
         return; 
     } 
  
     string date, line; 
-    cout << "\nEnter Admission Date to search (DD/MM/YYYY): "; 
+    cout << "\033[1;36m\nEnter Admission Date to search (DD/MM/YYYY): \033[0m"; 
     getline(cin,date); 
  
     bool found = false; 
@@ -167,21 +167,19 @@ void searchByDate() {
             getline(record, date, ','); 
             getline(record, ward, ','); 
  
-            cout << "\nPatient Name: " << name 
-                 << "\nAge: " << age 
-                 << "\nIC Number: " << ic 
-                 << "\nGender: " << gender 
-                 << "\nContact Number: " << contact 
-                 << "\nAdmission Reason: " << reason 
-                 << "\nAdmission Date: " << date 
-                 << "\nWard Number: " << ward 
+            cout << "\033[1;32m\nPatient Name: \033[0m" << name 
+                 << "\n\033[1;32mAge: \033[0m" << age 
+                 << "\n\033[1;32mIC Number: \033[0m" << ic 
+                 << "\n\033[1;32mGender: \033[0m" << gender 
+                 << "\n\033[1;32mContact Number: \033[0m" << contact 
+                 << "\n\033[1;32mAdmission Reason: \033[0m" << reason 
+                 << "\n\033[1;32mAdmission Date: \033[0m" << date 
+                 << "\n\033[1;32mWard Number: \033[0m" << ward 
                  << "\n-------------------------\n"; 
             found = true; 
         } 
     } 
     if (!found) { 
-        cout << "\nNo record found for Date " << date << ".\n"; 
+        cout << "\033[1;31m\nNo record found for Date \033[0m" << date << ".\n"; 
     } 
- 
-    file.close(); 
 }

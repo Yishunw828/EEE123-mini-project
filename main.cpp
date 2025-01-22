@@ -7,22 +7,26 @@
 #include "W_A_Menu.hpp" 
 #include "S_R_Menu.cpp" 
 #include "S_R_Menu.hpp" 
- 
+
 using namespace std; 
- 
+
+void displayMainMenu() {
+    cout << "\033[1;34m\n=== Ward Admission and Searching Record System ===\033[0m\n"; 
+    cout << "\033[1;32m1. Ward Admission\033[0m\n"; 
+    cout << "\033[1;33m2. Searching Record\033[0m\n"; 
+    cout << "\033[1;31m3. Exit\033[0m\n"; 
+    cout << "\033[1;36m\nEnter your choice > \033[0m"; 
+}
+
 int main() { 
     bool running = true; 
- 
+
     while (running) { 
-        cout << "\n=== Ward Admission and Searching Record System ===\n"; 
-        cout << "1. Ward Admission\n"; 
-        cout << "2. Searching Record\n"; 
-        cout << "3. Exit\n"; 
-        cout << "\nEnter your choice > "; 
- 
+        displayMainMenu(); 
+
         string input; 
         cin >> input; 
- 
+
         bool isValid = true; 
         for (char ch : input) { 
             if (!isdigit(ch)) { 
@@ -30,14 +34,14 @@ int main() {
                 break; 
             } 
         } 
- 
+
         if (!isValid) { 
-            cout << "\nInvalid input! Please enter a valid number.\n"; 
+            cout << "\033[1;31m\nInvalid input! Please enter a valid number.\033[0m\n"; 
             continue; 
         } 
- 
+
         int choice = stoi(input); 
- 
+
         switch (choice) { 
             case 1: 
                 wardAdmissionMenu(); 
@@ -46,14 +50,14 @@ int main() {
                 searchingRecordMenu(); 
                 break; 
             case 3: 
-                cout << "\nExiting system...\n"; 
+                cout << "\033[1;31m\nExiting system...\033[0m\n"; 
                 running = false; 
                 break; 
             default: 
-                cout << "\nInvalid choice! Please enter a number between 1 and 3.\n"; 
+                cout << "\033[1;31m\nInvalid choice! Please enter a number between 1 and 3.\033[0m\n"; 
                 break; 
         } 
     } 
- 
+
     return 0; 
 }
