@@ -7,6 +7,7 @@
 #include <ctime>   
 #include <limits>   
 #include <set>    
+#include "admission.hpp"
 
 using namespace std;
 
@@ -21,13 +22,23 @@ set<int> getAssignedWards() {
     while (getline(file, line)) {
         size_t lastComma = line.find_last_of(',');
         if (lastComma != string::npos) {
-            int ward = stoi(line.substr(lastComma + 1));
-            assignedWards.insert(ward);
+            string wardStr = line.substr(lastComma + 1);
+            if (!wardStr.empty() && wardStr[0] == 'W') { 
+                try {
+                    int ward = stoi(wardStr.substr(1)); 
+                    assignedWards.insert(ward);
+                } catch (const invalid_argument&) {
+                    cerr << "Error: Invalid ward number format in file: " << wardStr << endl;
+                } catch (const out_of_range&) {
+                    cerr << "Error: Ward number out of range in file: " << wardStr << endl;
+                }
+            }
         }
     }
     file.close();
     return assignedWards;
 }
+
 
 int assignRandomWard(const set<int>& assignedWards) {
     if (assignedWards.size() >= MAX_WARD) return -1;  
