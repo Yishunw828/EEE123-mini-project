@@ -19,7 +19,7 @@ void displayWardAdmissionMenu() {
     cout << "\033[1;32m1. Admit Patient\033[0m\n"; 
     cout << "\033[1;33m2. Remove Patient\033[0m\n"; 
     cout << "\033[1;31m3. Return to Main Menu\033[0m\n"; 
-    cout << "\033[1;36m\nEnter your choice: \033[0m"; 
+    cout << "\033[1;36m\nEnter your choice > \033[0m"; 
 }
 
 void wardAdmissionMenu() { 

@@ -7,6 +7,7 @@
 void searchMenu();
 void searchByName();
 void searchByWard();
+bool isValidIC(const string& ic);
 void searchByDate();
 
 #endif

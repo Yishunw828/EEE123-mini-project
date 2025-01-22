@@ -17,7 +17,7 @@ void searchMenu() {
     cout << "\033[1;36m1. Name\033[0m\n";
     cout << "\033[1;36m2. Ward Number\033[0m\n";
     cout << "\033[1;36m3. Admission Date\033[0m\n";
-    cout << "\033[1;36m\n[INPUT] Enter your choice: \033[0m";
+    cout << "\033[1;36m\nEnter your choice > \033[0m";
     cin >> input;
     cin.ignore();
 
@@ -51,6 +51,13 @@ void searchMenu() {
     }
 }
 
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <regex>
+
+using namespace std;
+
 void searchByName() {
     ifstream file("patients.txt");
     if (!file) {
@@ -59,8 +66,18 @@ void searchByName() {
     }
 
     string name, line;
-    cout << "\033[1;36m\nEnter Patient Name to search: \033[0m";
-    getline(cin, name);
+    regex namePattern("^[a-zA-Z\\s]+$"); 
+
+    do {
+        cout << "\033[1;36m\nEnter Patient Name to search: \033[0m";
+        getline(cin, name);
+
+        if (!regex_match(name, namePattern)) {
+            cout << "\033[1;31mInvalid name format. Please enter a valid name (alphabets and spaces only).\033[0m\n";
+        } else {
+            break; 
+        }
+    } while (true);
 
     bool found = false;
     while (getline(file, line)) {
@@ -97,6 +114,14 @@ void searchByName() {
     file.close();
 }
 
+
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <regex>
+
+using namespace std;
+
 void searchByWard() {
     ifstream file("patients.txt");
     if (!file) {
@@ -105,8 +130,18 @@ void searchByWard() {
     }
 
     string ward, line;
-    cout << "\033[1;36m\nEnter Ward Number to search: \033[0m";
-    getline(cin, ward);
+    regex wardPattern("^(WFE|WMA)\\d{1,3}$");
+
+    do {
+        cout << "\033[1;36m\nEnter Ward Number to search (e.g., WFE123 or WMA45): \033[0m";
+        getline(cin, ward);
+
+        if (!regex_match(ward, wardPattern)) {
+            cout << "\033[1;31mInvalid ward number format. Please enter a valid ward number.\033[0m\n";
+        } else {
+            break; 
+        }
+    } while (true);
 
     bool found = false;
     while (getline(file, line)) {
@@ -143,6 +178,20 @@ void searchByWard() {
     file.close();
 }
 
+bool ValidDate(const std::string& date) { 
+    if (date.length() != 10 || date[2] != '/' || date[5] != '/') return false; 
+    std::string dayStr = date.substr(0, 2), monthStr = date.substr(3, 2), yearStr = date.substr(6, 4); 
+    try { 
+        int day = std::stoi(dayStr), month = std::stoi(monthStr), year = std::stoi(yearStr); 
+        if (day < 1 || day > 31 || month < 1 || month > 12 || year < 1000 || year > 9999) return false; 
+        int daysInMonth[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}; 
+        if (month == 2 && (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0))) daysInMonth[1] = 29; 
+        return day <= daysInMonth[month - 1]; 
+    } catch (...) { 
+        return false; 
+    } 
+}
+
 void searchByDate() {
     ifstream file("patients.txt");
     if (!file) {
@@ -151,8 +200,17 @@ void searchByDate() {
     }
 
     string date, line;
-    cout << "\033[1;36m\nEnter Admission Date to search (DD/MM/YYYY): \033[0m";
-    getline(cin, date);
+
+    do {
+        cout << "\033[1;36m\nEnter Admission Date to search (DD/MM/YYYY): \033[0m";
+        getline(cin, date);
+
+        if (!ValidDate(date)) {
+            cout << "\033[1;31mInvalid date format. Please enter a valid date in DD/MM/YYYY format.\033[0m\n";
+        } else {
+            break; 
+        }
+    } while (true);
 
     bool found = false;
     while (getline(file, line)) {
