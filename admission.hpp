@@ -5,17 +5,19 @@
 #define ADMISSION_HPP
 
 #include <iostream>
-#include <fstream>
-#include <cstdlib>
-#include <ctime>
-#include <limits>
 #include <set>
+#include <string>
 
 using namespace std;
 
+bool isValidName(const std::string& name);
+string getValidName();
+bool isValidDate(const std::string& date);
+string getValidDate();
 set<int> getAssignedWards();
-int assignRandomWard(const set<int>& assignedWards);
+int assignRandomWard(const std::set<int>& assignedWards);
 void admitPatient();
 
 #endif 
+
 

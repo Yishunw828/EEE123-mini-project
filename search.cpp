@@ -13,7 +13,7 @@ void searchMenu() {
     int choice;
     string input;
 
-    cout << "\033[1;36m\n[MENU] Search Patient Record By:\033[0m\n";
+    cout << "\033[1;36m\nSearch Patient Record By:\033[0m\n";
     cout << "\033[1;36m1. Name\033[0m\n";
     cout << "\033[1;36m2. Ward Number\033[0m\n";
     cout << "\033[1;36m3. Admission Date\033[0m\n";
@@ -30,7 +30,7 @@ void searchMenu() {
     }
 
     if (!isValid) {
-        cout << "\033[1;31m\n[ERROR] Invalid input! Please enter a valid number.\033[0m\n";
+        cout << "\033[1;31m\nInvalid input! Please enter a valid number.\033[0m\n";
         return;
     }
 
@@ -47,19 +47,19 @@ void searchMenu() {
             searchByDate();
             break;
         default:
-            cout << "\033[1;31m\n[ERROR] Invalid choice! Please select a valid option.\033[0m\n";
+            cout << "\033[1;31m\nInvalid choice! Please select a valid option.\033[0m\n";
     }
 }
 
 void searchByName() {
     ifstream file("patients.txt");
     if (!file) {
-        cout << "\033[1;31m\n[ERROR] Unable to open the file for reading.\033[0m\n";
+        cout << "\033[1;31m\nUnable to open the file for reading.\033[0m\n";
         return;
     }
 
     string name, line;
-    cout << "\033[1;36m\n[INPUT] Enter Patient Name to search: \033[0m";
+    cout << "\033[1;36m\nEnter Patient Name to search: \033[0m";
     getline(cin, name);
 
     bool found = false;
@@ -77,7 +77,7 @@ void searchByName() {
             getline(record, date, ',');
             getline(record, ward, ',');
 
-            cout << "\033[1;32m\n[RESULT] Patient Record Found:\033[0m\n";
+            cout << "\033[1;32m\nPatient Record Found:\033[0m\n";
             cout << "Patient Name: " << name
                  << "\nAge: " << age
                  << "\nIC Number: " << ic
@@ -91,7 +91,7 @@ void searchByName() {
         }
     }
     if (!found) {
-        cout << "\033[1;31m\n[ERROR] No record found for patient name: \033[0m" << name << ".\n";
+        cout << "\033[1;31m\nNo record found for patient name: \033[0m" << name << ".\n";
     }
 
     file.close();
@@ -100,12 +100,12 @@ void searchByName() {
 void searchByWard() {
     ifstream file("patients.txt");
     if (!file) {
-        cout << "\033[1;31m\n[ERROR] Unable to open the file for reading.\033[0m\n";
+        cout << "\033[1;31m\nUnable to open the file for reading.\033[0m\n";
         return;
     }
 
     string ward, line;
-    cout << "\033[1;36m\n[INPUT] Enter Ward Number to search: \033[0m";
+    cout << "\033[1;36m\nEnter Ward Number to search: \033[0m";
     getline(cin, ward);
 
     bool found = false;
@@ -123,7 +123,7 @@ void searchByWard() {
             getline(record, date, ',');
             getline(record, ward, ',');
 
-            cout << "\033[1;32m\n[RESULT] Patient Record Found:\033[0m\n";
+            cout << "\033[1;32m\nPatient Record Found:\033[0m\n";
             cout << "Patient Name: " << name
                  << "\nAge: " << age
                  << "\nIC Number: " << ic
@@ -137,7 +137,7 @@ void searchByWard() {
         }
     }
     if (!found) {
-        cout << "\033[1;31m\n[ERROR] No record found for ward number: \033[0m" << ward << ".\n";
+        cout << "\033[1;31m\nNo record found for ward number: \033[0m" << ward << ".\n";
     }
 
     file.close();
@@ -146,12 +146,12 @@ void searchByWard() {
 void searchByDate() {
     ifstream file("patients.txt");
     if (!file) {
-        cout << "\033[1;31m\n[ERROR] Unable to open the file for reading.\033[0m\n";
+        cout << "\033[1;31m\nUnable to open the file for reading.\033[0m\n";
         return;
     }
 
     string date, line;
-    cout << "\033[1;36m\n[INPUT] Enter Admission Date to search (DD/MM/YYYY): \033[0m";
+    cout << "\033[1;36m\nEnter Admission Date to search (DD/MM/YYYY): \033[0m";
     getline(cin, date);
 
     bool found = false;
@@ -169,7 +169,7 @@ void searchByDate() {
             getline(record, date, ',');
             getline(record, ward, ',');
 
-            cout << "\033[1;32m\n[RESULT] Patient Record Found:\033[0m\n";
+            cout << "\033[1;32m\nPatient Record Found:\033[0m\n";
             cout << "Patient Name: " << name
                  << "\nAge: " << age
                  << "\nIC Number: " << ic
@@ -183,7 +183,7 @@ void searchByDate() {
         }
     }
     if (!found) {
-        cout << "\033[1;31m\n[ERROR] No record found for admission date: \033[0m" << date << ".\n";
+        cout << "\033[1;31m\nNo record found for admission date: \033[0m" << date << ".\n";
     }
 
     file.close();
