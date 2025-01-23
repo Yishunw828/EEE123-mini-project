@@ -15,7 +15,7 @@ void searchMenu() {
 
     cout << "\033[1;34m\n";
     cout << "==============================================\n";
-    cout << "|          \033[0;33mSearch Patient Record By       \033[1;34m|\n";
+    cout << "|          \033[0;33mSearch Patient Record By           \033[1;34m|\n";
     cout << "==============================================\n";
     cout << "|  \033[1;36m1. Name                                    \033[1;34m|\n";
     cout << "|  \033[1;36m2. Ward Number                             \033[1;34m|\n";
