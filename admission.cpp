@@ -11,7 +11,7 @@
  
 using namespace std; 
  
-const int MAX_WARD = 1000; 
+const int MAX_WARD = 899; 
  
 bool isValidName(const string& name) { 
     if (name.empty()) return false; 
@@ -23,13 +23,13 @@ bool isValidName(const string& name) {
  
 string getValidName() {
     string name;
-    cout << "\nEnter Patient Full Name as per IC: ";
+    cout << "\033[1;36m\nEnter Patient Full Name as per IC: \033[0m";
 
     while (true) {
         getline(cin, name);
 
         if (isValidName(name)) break; 
-        cout << "Invalid input! Name must contain only alphabets and spaces. Please try again: ";
+        cout << "\033[1;31mInvalid input! Name must contain only alphabets and spaces. Please try again: \033[0m";
     }
     return name;
 }
@@ -49,12 +49,12 @@ bool isValidIC(const string& ic) {
 
 string getValidIC() {
     string ic;
-    cout << "Enter IC Number (XXXXXX-XX-XXXX): ";
+    cout << "\033[1;36mEnter IC Number (XXXXXX-XX-XXXX): \033[0m";
     while (true) {
         getline(cin, ic);
         if (isValidIC(ic)) break;
         
-        cout << "Invalid input! Enter a valid IC Number (XXXXXX-XX-XXXX): ";
+        cout << "\033[1;31mInvalid input! Enter a valid IC Number (XXXXXX-XX-XXXX): \033[0m";
     }
     return ic;
 }
@@ -68,14 +68,14 @@ bool isValidContact(const string& contact) {
 
 string getValidContact() {
     string contact;
-    cout << "Enter Contact Number (without -): ";
+    cout << "\033[1;36mEnter Contact Number (without -): \033[0m";
     
     while (true) {
         getline(cin, contact);
         
         if (isValidContact(contact)) break;
 
-        cout << "Invalid input! Enter a valid contact number (digits only): ";
+        cout << "\033[1;31mInvalid input! Enter a valid contact number (digits only): \033[0m";
     }
     return contact;
 }
@@ -89,13 +89,13 @@ bool isValidReason(const string& reason) {
 
 string getValidReason() {
     string reason;
-    cout << "Enter Admission Reason: ";
+    cout << "\033[1;36mEnter Admission Reason: \033[0m";
 
     while (true) {
         getline(cin, reason);
 
         if (isValidReason(reason)) break;  
-        cout << "Invalid input! Reason must contain only alphabets and spaces. Please enter again: ";
+        cout << "\033[1;31mInvalid input! Reason must contain only alphabets and spaces. Please enter again: \033[0m";
     }
     return reason;
 }
@@ -117,18 +117,17 @@ bool isValidDate(const std::string& date) {
  
 string getValidDate() {
     string date;
-    cout << "Enter Admission Date (DD/MM/YYYY): ";
+    cout << "\033[1;36mEnter Admission Date (DD/MM/YYYY): \033[0m";
 
     while (true) {
         getline(cin, date);
 
         if (isValidDate(date)) break;
-        cout << "Invalid input! Date must be in the format DD/MM/YYYY. Please try again: ";
+        cout << "\033[1;31mInvalid input! Date must be in the format DD/MM/YYYY. Please try again: \033[0m";
     }
     return date;
 }
 
- 
 set<int> getAssignedWards() { 
     set<int> assignedWards; 
     ifstream file("patients.txt"); 
@@ -141,7 +140,9 @@ set<int> getAssignedWards() {
             if (!wardStr.empty() && (wardStr.find("WMA") == 0 || wardStr.find("WFE") == 0)) { 
                 try { 
                     int ward = stoi(wardStr.substr(3)); 
-                    assignedWards.insert(ward); 
+                    if (ward >= 101 && ward <= 999) {  
+                        assignedWards.insert(ward); 
+                    }
                 } catch (...) {} 
             } 
         } 
@@ -150,18 +151,18 @@ set<int> getAssignedWards() {
 } 
  
 int assignRandomWard(const set<int>& assignedWards) { 
-    if (assignedWards.size() >= MAX_WARD) return -1; 
+    if (assignedWards.size() >= 899) return -1;  
     int ward; 
     do { 
-        ward = rand() % MAX_WARD + 1; 
+        ward = rand() % 899 + 101;  
     } while (assignedWards.find(ward) != assignedWards.end()); 
     return ward; 
-} 
- 
+}
+
 void admitPatient() { 
     ofstream file("patients.txt", ios::app); 
     if (!file) { 
-        cerr << "Error opening file!\n"; 
+        cerr << "\033[1;31mError opening file!\033[0m\n"; 
         return; 
     } 
  
@@ -169,17 +170,17 @@ void admitPatient() {
     set<int> assignedWards = getAssignedWards(); 
     int ward = assignRandomWard(assignedWards); 
     if (ward == -1) { 
-        cout << "All ward numbers are occupied. Cannot admit new patients!\n"; 
+        cout << "\033[1;31mAll ward numbers are occupied. Cannot admit new patients!\033[0m\n"; 
         return; 
     } 
     cin.ignore(numeric_limits<streamsize>::max(), '\n');  
     string name = getValidName(); 
      
     int age;
-    cout << "Enter Age: ";
+    cout << "\033[1;36mEnter Age: \033[0m";
     while (!(cin >> age) || age <= 0 || age > 100) 
     {
-        cout << "Invalid input! Age must be between 0 and 100: ";
+        cout << "\033[1;31mInvalid input! Age must be between 0 and 100: \033[0m";
         cin.clear();
         cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
@@ -188,14 +189,14 @@ void admitPatient() {
     string ic = getValidIC();
  
     string gender, wardPrefix; 
-    cout << "Enter Gender (Male/Female): "; 
+    cout << "\033[1;36mEnter Gender (Male/Female): \033[0m"; 
     while (true) { 
         getline(cin, gender); 
         if (gender == "Male" || gender == "Female") { 
             wardPrefix = (gender == "Male") ? "WMA" : "WFE"; 
             break; 
         } 
-        cout << "Invalid input! Please enter Male or Female: "; 
+        cout << "\033[1;31mInvalid input! Please enter Male or Female: \033[0m"; 
     } 
  
     string contact  = getValidContact();
@@ -206,5 +207,5 @@ void admitPatient() {
     file << name << "," << age << "," << ic << "," << gender << "," << contact << "," << reason << "," << date << "," << wardPrefix << ward << endl; 
     file.close(); 
  
-    cout << "\nPatient admitted successfully! Assigned ward number: " << wardPrefix << ward << "\n"; 
+    cout << "\033[1;32m\nPatient admitted successfully! Assigned ward number: \033[0m" << wardPrefix << ward << "\n"; 
 }

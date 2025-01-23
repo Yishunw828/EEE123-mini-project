@@ -10,7 +10,6 @@
 
 using namespace std;
 
-// Function to display the main menu with a box design
 void displayMainMenu() {
     cout << "\033[1;34m\n";
     cout << "========================================================\n";
@@ -32,7 +31,6 @@ int main() {
         string input;
         cin >> input;
 
-        // Validate input
         bool isValid = true;
         for (char ch : input) {
             if (!isdigit(ch)) {
@@ -48,7 +46,6 @@ int main() {
 
         int choice = stoi(input);
 
-        // Process menu choice
         switch (choice) {
             case 1:
                 wardAdmissionMenu();

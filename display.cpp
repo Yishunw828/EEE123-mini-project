@@ -17,7 +17,7 @@ void displayAllRecords() {
 
     string line;
     cout << "\033[1;34m\n==============================================\033[0m" << endl;
-    cout << "\033[1;34m        === All Patient Records ===         \033[0m" << endl;
+    cout << "\033[0;33m        === All Patient Records ===         \033[0m" << endl;
     cout << "\033[1;34m==============================================\033[0m" << endl;
 
     bool recordFound = false;
@@ -51,8 +51,6 @@ void displayAllRecords() {
     if (!recordFound) {
         cout << "\033[1;31m\nNo records found!\033[0m" << endl;
     }
-
-    cout << "\033[1;34m==============================================\033[0m" << endl;
 
     file.close();
 }

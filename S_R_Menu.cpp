@@ -15,10 +15,10 @@ using namespace std;
 void displaySearchingRecordMenu() {
     cout << "\033[1;34m\n";
     cout << "==============================================\n";
-    cout << "|        \033[1;36m--- Searching Record Menu ---          \033[1;34m|\n";
+    cout << "|        \033[1;33m--- Searching Record Menu ---          \033[1;34m|\n";
     cout << "==============================================\n";
-    cout << "|  \033[1;32m1. Search Patient                            \033[1;34m|\n";
-    cout << "|  \033[1;33m2. Display All Records                       \033[1;34m|\n";
+    cout << "|  \033[0;33m1. Search Patient                            \033[1;34m|\n";
+    cout << "|  \033[0;33m2. Display All Records                       \033[1;34m|\n";
     cout << "|  \033[1;31m3. Return to Main Menu                       \033[1;34m|\n";
     cout << "==============================================\n";
     cout << "\033[1;36mEnter your choice > \033[0m";

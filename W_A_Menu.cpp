@@ -18,11 +18,11 @@ using namespace std;
 void displayWardAdmissionMenu() {
     cout << "\033[1;34m\n";
     cout << "==============================================\n";
-    cout << "|            \033[1;36m--- Ward Admission Menu ---       \033[1;34m|\n";
+    cout << "|         \033[1;35m--- Ward Admission Menu ---       \033[1;34m|\n";
     cout << "==============================================\n";
-    cout << "|  \033[1;35m1. Admit Patient                            \033[1;34m|\n";
-    cout << "|  \033[1;35m2. Remove Patient                           \033[1;34m|\n";
-    cout << "|  \033[1;35m3. Return to Main Menu                      \033[1;34m|\n";
+    cout << "|  \033[0;35m1. Admit Patient                            \033[1;34m|\n";
+    cout << "|  \033[0;35m2. Remove Patient                           \033[1;34m|\n";
+    cout << "|  \033[1;31m3. Return to Main Menu                      \033[1;34m|\n";
     cout << "==============================================\n";
     cout << "\033[1;36mEnter your choice > \033[0m";
 }

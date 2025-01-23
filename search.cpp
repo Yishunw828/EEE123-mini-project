@@ -15,7 +15,7 @@ void searchMenu() {
 
     cout << "\033[1;34m\n";
     cout << "==============================================\n";
-    cout << "|              \033[1;36mSearch Patient Record By       \033[1;34m|\n";
+    cout << "|          \033[0;33mSearch Patient Record By       \033[1;34m|\n";
     cout << "==============================================\n";
     cout << "|  \033[1;36m1. Name                                    \033[1;34m|\n";
     cout << "|  \033[1;36m2. Ward Number                             \033[1;34m|\n";
@@ -101,7 +101,7 @@ void searchByName() {
             getline(record, date, ',');
             getline(record, ward, ',');
 
-            cout << "\033[1;32m\nPatient Record Found:\033[0m\n";
+            cout << "\033[1;32mPatient Record Found:\033[0m\n";
             cout << "| \033[1;32mPatient Name: \033[0m" << name
                  << "\n| \033[1;33mAge: \033[0m" << age
                  << "\n| \033[1;36mIC Number: \033[0m" << ic
@@ -109,16 +109,15 @@ void searchByName() {
                  << "\n| \033[1;34mContact Number: \033[0m" << contact
                  << "\n| \033[1;32mAdmission Reason: \033[0m" << reason
                  << "\n| \033[1;33mAdmission Date: \033[0m" << date
-                 << "\n| \033[1;31mWard Number: \033[0m" << ward
-                 << "\n\033[1;34m----------------------------------------------\033[0m\n";
+                 << "\n| \033[1;31mWard Number: \033[0m" << ward;
             found = true;
         }
     }
 
     if (!found) {
-        cout << "\033[1;31m\nNo record found for patient name: \033[0m" << name << ".\n";
+        cout << "\033[1;31mNo record found for patient name: \033[0m" << name << ".";
     }
-    cout << "\033[1;34m==============================================\033[0m\n";
+    cout << "\033[1;34m\n==============================================\033[0m\n";
 
     file.close();
 }
@@ -140,10 +139,10 @@ void searchByWard() {
     }
 
     string ward, line;
-    regex wardPattern("^(WFE|WMA)\\d{1,3}$");
+    regex wardPattern("^(WFE|WMA)\\d{3}$");
 
     do {
-        cout << "\033[1;36m\nEnter Ward Number to search (e.g., WFE123 or WMA45): \033[0m";
+        cout << "\033[1;36m\nEnter Ward Number to search (e.g., WFE123 or WMA455): \033[0m";
         getline(cin, ward);
 
         if (!regex_match(ward, wardPattern)) {
@@ -169,23 +168,23 @@ void searchByWard() {
             getline(record, date, ',');
             getline(record, ward, ',');
 
-            cout << "| Patient Name: " << name
-                 << "\n| Age: " << age
-                 << "\n| IC Number: " << ic
-                 << "\n| Gender: " << gender
-                 << "\n| Contact Number: " << contact
-                 << "\n| Admission Reason: " << reason
-                 << "\n| Admission Date: " << date
-                 << "\n| Ward Number: " << ward
-                 << "\n----------------------------------------------\n";
+            cout << "\033[1;32mPatient Record Found:\033[0m\n";
+            cout << "| \033[1;32mPatient Name: \033[0m" << name
+                 << "\n| \033[1;33mAge: \033[0m" << age
+                 << "\n| \033[1;36mIC Number: \033[0m" << ic
+                 << "\n| \033[1;35mGender: \033[0m" << gender
+                 << "\n| \033[1;34mContact Number: \033[0m" << contact
+                 << "\n| \033[1;32mAdmission Reason: \033[0m" << reason
+                 << "\n| \033[1;33mAdmission Date: \033[0m" << date
+                 << "\n| \033[1;31mWard Number: \033[0m" << ward;
             found = true;
         }
     }
 
     if (!found) {
-        cout << "\033[1;31m\nNo record found for ward number: \033[0m" << ward << ".\n";
+        cout << "\033[1;31mNo record found for ward number: \033[0m" << ward << ".";
     }
-    cout << "\033[1;34m==============================================\033[0m\n";
+    cout << "\033[1;34m\n==============================================\033[0m\n";
 
     file.close();
 }
@@ -241,6 +240,7 @@ void searchByDate() {
             getline(record, date, ',');
             getline(record, ward, ',');
 
+            cout << "\033[1;32mPatient Record Found:\033[0m\n";
             cout << "| \033[1;32mPatient Name: \033[0m" << name
                  << "\n| \033[1;33mAge: \033[0m" << age
                  << "\n| \033[1;36mIC Number: \033[0m" << ic
@@ -248,16 +248,15 @@ void searchByDate() {
                  << "\n| \033[1;34mContact Number: \033[0m" << contact
                  << "\n| \033[1;32mAdmission Reason: \033[0m" << reason
                  << "\n| \033[1;33mAdmission Date: \033[0m" << date
-                 << "\n| \033[1;31mWard Number: \033[0m" << ward
-                 << "\n\033[1;34m----------------------------------------------\033[0m\n";
+                 << "\n| \033[1;31mWard Number: \033[0m" << ward;
             found = true;
         }
     }
 
     if (!found) {
-        cout << "\033[1;31m\nNo record found for admission date: \033[0m" << date << ".\n";
+        cout << "\033[1;31mNo record found for admission date: \033[0m" << date << ".";
     }
-    cout << "\033[1;34m==============================================\033[0m\n";
+    cout << "\033[1;34m\n==============================================\033[0m\n";
 
     file.close();
 }

@@ -42,9 +42,9 @@ void removePatient() {
     if (found) {
         remove("patients.txt");          
         rename("temp.txt", "patients.txt"); 
-        cout << "\033[1;32mPatient '" << nameToRemove << "' has been removed successfully.\033[0m\n";
+        cout << "\033[1;32m\nPatient '" << nameToRemove << "' has been removed successfully.\033[0m\n";
     } else {
         remove("temp.txt"); 
-        cout << "\033[1;31mPatient not found!\033[0m\n";
+        cout << "\033[1;31m\nPatient not found!\033[0m\n";
     }
 }
