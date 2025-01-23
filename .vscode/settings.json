@@ -4,5 +4,6 @@
         "*.tcc": "cpp",
         "iosfwd": "cpp",
         "cstdlib": "cpp"
-    }
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }
