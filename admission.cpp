@@ -16,7 +16,7 @@ const int MAX_WARD = 899;
 bool isValidName(const string& name) { 
     if (name.empty()) return false; 
     for (char c : name) { 
-        if (!isalpha(c) && c != ' ') return false; 
+        if (isdigit(c)) return false;  
     } 
     return true; 
 } 
@@ -29,7 +29,7 @@ string getValidName() {
         getline(cin, name);
 
         if (isValidName(name)) break; 
-        cout << "\033[1;31mInvalid input! Name must contain only alphabets and spaces. Please try again: \033[0m";
+        cout << "\033[1;31mInvalid input! Name must not contain numbers. Please try again: \033[0m";
     }
     return name;
 }
