@@ -4,6 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <regex>
 #include <cctype>
 #include "search.hpp"
 
@@ -56,14 +57,6 @@ void searchMenu() {
     }
 }
 
-
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <regex>
-
-using namespace std;
-
 void searchByName() {
     ifstream file("patients.txt");
     if (!file) {
@@ -72,14 +65,14 @@ void searchByName() {
     }
 
     string name, line;
-    regex namePattern("^[a-zA-Z\\s]+$");
+    regex namePattern("^[^0-9]+$"); 
 
     do {
         cout << "\033[1;36m\nEnter Patient Name to search: \033[0m";
         getline(cin, name);
 
         if (!regex_match(name, namePattern)) {
-            cout << "\033[1;31mInvalid name format. Please enter a valid name (alphabets and spaces only).\033[0m\n";
+            cout << "\033[1;31mInvalid name format. Name cannot contain numbers. Please try again.\033[0m\n";
         } else {
             break;
         }
@@ -121,15 +114,6 @@ void searchByName() {
 
     file.close();
 }
-
-
-
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <regex>
-
-using namespace std;
 
 void searchByWard() {
     ifstream file("patients.txt");
