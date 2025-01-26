@@ -1,23 +1,28 @@
-// Programmers: 
-// Purpose: Declaration of patient admission functions.
-
 #ifndef ADMISSION_HPP
-#define ADMISSION_HPP
+#define ADMISSION_HPP 
 
-#include <iostream>
-#include <set>
 #include <string>
+#include <set>
 
-using namespace std;
+using namespace std; 
 
-bool isValidName(const std::string& name);
+// Programmers: Nick Wong Paul Ian
+// Matric No. : 23305339
+// Purpose: Declare functions for admit patient, ensuring all inputs are valid and properly formatted.
+bool isValidName(const string& name);
 string getValidName();
-bool isValidDate(const std::string& date);
+bool isValidIC(const string& ic);
+string getValidIC();
+bool isValidContact(const string& contact);
+string getValidContact();
+bool isValidReason(const string& reason);
+string getValidReason();
+bool isValidDate(const string& date);
 string getValidDate();
 set<int> getAssignedWards();
-int assignRandomWard(const std::set<int>& assignedWards);
+int assignRandomWard(const set<int>& assignedWards);
 void admitPatient();
 
-#endif 
+#endif
 
 

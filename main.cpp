@@ -1,6 +1,3 @@
-// Programmers: 
-// Purpose: Main program to handle ward admission and record searching.
-
 #include <iostream>
 #include <string>
 #include "W_A_Menu.cpp"
@@ -10,23 +7,22 @@
 
 using namespace std;
 
-void displayMainMenu() {
-    cout << "\033[1;34m\n";
-    cout << "========================================================\n";
-    cout << "|  \033[1;36m=== Ward Admission and Searching Record System ===\033[1;34m  |\n";
-    cout << "========================================================\n";
-    cout << "|  \033[1;35m1. Ward Admission                               \033[1;34m    |\n";
-    cout << "|  \033[1;33m2. Searching Record                            \033[1;34m     |\n";
-    cout << "|  \033[1;31m3. Exit                                        \033[1;34m     |\n";
-    cout << "========================================================\n";
-    cout << "\033[1;36mEnter your choice > \033[0m";
-}
-
+// Programmers: Muhammad Ammer Asyraff bin Mohd Farid
+// Matric No. : 22306881
+// Purpose: Run the main menu of system and handle user choices.
 int main() {
     bool running = true;
 
     while (running) {
-        displayMainMenu();
+        cout << "\033[1;34m\n";
+        cout << "========================================================\n";
+        cout << "|  \033[1;36m=== Ward Admission and Searching Record System ===\033[1;34m  |\n";
+        cout << "========================================================\n";
+        cout << "|  \033[1;35m1. Ward Admission                               \033[1;34m    |\n";
+        cout << "|  \033[1;33m2. Searching Record                            \033[1;34m     |\n";
+        cout << "|  \033[1;31m3. Exit                                        \033[1;34m     |\n";
+        cout << "========================================================\n";
+        cout << "\033[1;36mEnter your choice > \033[0m";
 
         string input;
         cin >> input;
@@ -65,3 +61,4 @@ int main() {
 
     return 0;
 }
+

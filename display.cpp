@@ -1,6 +1,3 @@
-// Programmers: 
-// Purpose: Function to display all patient records from patients.txt.
-
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -8,6 +5,9 @@
 
 using namespace std;
 
+// Programmers: Wong Yi Shun
+// Matric No. : 23302060
+// Purpose: Displays all patient records from the file.
 void displayAllRecords() {
     ifstream file("patients.txt");
     if (!file) {

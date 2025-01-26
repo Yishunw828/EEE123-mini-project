@@ -1,6 +1,3 @@
-// Programmers: 
-// Purpose: Functions to search patient records by name, ward, or date.
-
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -10,6 +7,9 @@
 
 using namespace std;
 
+// Programmers: Muhammad Zafir Haziq bin Zulkifly
+// Matric No. : 23304009
+// Purpose: Displays a menu for searching patient records by name, ward or admission date.
 void searchMenu() {
     string input;
     int choice;
@@ -57,6 +57,9 @@ void searchMenu() {
     }
 }
 
+// Programmers: Muhammad Zafir Haziq bin Zulkifly
+// Matric No. : 23304009
+// Purpose: Searches for a patient record by name.
 void searchByName() {
     ifstream file("patients.txt");
     if (!file) {
@@ -115,6 +118,9 @@ void searchByName() {
     file.close();
 }
 
+// Programmers: Divyadarrshini A/P Loganathan
+// Matric No. : 23303060
+// Purpose: Searches for a patient record by ward number.
 void searchByWard() {
     ifstream file("patients.txt");
     if (!file) {
@@ -173,7 +179,9 @@ void searchByWard() {
     file.close();
 }
 
-
+// Programmers: Wong Yi Shun
+// Matric No. : 23302060
+// Purpose: Validates the format of the date in DD/MM/YYYY format, same as part admit patient.
 bool ValidDate(const std::string& date) { 
     if (date.length() != 10 || date[2] != '/' || date[5] != '/') return false; 
     std::string dayStr = date.substr(0, 2), monthStr = date.substr(3, 2), yearStr = date.substr(6, 4); 
@@ -188,6 +196,9 @@ bool ValidDate(const std::string& date) {
     } 
 }
 
+// Programmers: Wong Yi Shun
+// Matric No. : 23302060
+// Purpose: Searches for a patient record by admission date.
 void searchByDate() {
     ifstream file("patients.txt");
     if (!file) {

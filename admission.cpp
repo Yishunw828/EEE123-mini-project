@@ -1,6 +1,3 @@
-// Programmers: 
-// Purpose: Handles patient admission and stores data in patients.txt. 
- 
 #include <iostream> 
 #include <fstream> 
 #include <cstdlib> 
@@ -13,6 +10,9 @@ using namespace std;
  
 const int MAX_WARD = 899; 
  
+// Programmers: Lim Yean Zhen
+// Matric No. : 23304009
+// Purpose: Check if the input name is valid (does not contain numbers).
 bool isValidName(const string& name) { 
     if (name.empty()) return false; 
     for (char c : name) { 
@@ -20,7 +20,10 @@ bool isValidName(const string& name) {
     } 
     return true; 
 } 
- 
+
+// Programmers: Lim Yean Zhen
+// Matric No. : 23304009
+// Purpose: Get a valid patient name from the user (no numbers allowed). 
 string getValidName() {
     string name;
     cout << "\033[1;36m\nEnter Patient Full Name as per IC: \033[0m";
@@ -34,6 +37,9 @@ string getValidName() {
     return name;
 }
 
+// Programmers: Nick Wong Paul Ian
+// Matric No. : 23305339
+// Purpose: Check if the input IC number is valid (set a format).
 bool isValidIC(const string& ic) {
     if (ic.length() != 14) return false;
     
@@ -47,6 +53,9 @@ bool isValidIC(const string& ic) {
     return true;
 }
 
+// Programmers: Nick Wong Paul Ian
+// Matric No. : 23305339
+// Purpose: Get a valid patient's IC number from the user (format: XXXXXX-XX-XXXX).
 string getValidIC() {
     string ic;
     cout << "\033[1;36mEnter IC Number (XXXXXX-XX-XXXX): \033[0m";
@@ -59,6 +68,9 @@ string getValidIC() {
     return ic;
 }
 
+// Programmers: Nick Wong Paul Ian
+// Matric No. : 23305339
+// Purpose: Check if the input contact number is valid (numbers only).
 bool isValidContact(const string& contact) {
     for (char c : contact) {
         if (!isdigit(c)) return false;
@@ -66,6 +78,9 @@ bool isValidContact(const string& contact) {
     return !contact.empty();  
 }
 
+// Programmers: Nick Wong Paul Ian
+// Matric No. : 23305339
+// Purpose: Get a valid patient's contact number from the user (without -).
 string getValidContact() {
     string contact;
     cout << "\033[1;36mEnter Contact Number (without -): \033[0m";
@@ -80,6 +95,9 @@ string getValidContact() {
     return contact;
 }
 
+// Programmers: Nick Wong Paul Ian
+// Matric No. : 23305339
+// Purpose: Check if the input reason is valid (must not contain numbers).
 bool isValidReason(const string& reason) {
     for (char c : reason) {
         if (isdigit(c)) return false;  
@@ -87,6 +105,9 @@ bool isValidReason(const string& reason) {
     return !reason.empty();  
 }
 
+// Programmers: Nick Wong Paul Ian
+// Matric No. : 23305339
+// Purpose: Get a valid patient's admission reason from the user (alphabets only).
 string getValidReason() {
     string reason;
     cout << "\033[1;36mEnter Admission Reason: \033[0m";
@@ -100,6 +121,9 @@ string getValidReason() {
     return reason;
 }
  
+// Programmers: Lim Yean Zhen
+// Matric No. : 23304009
+// Purpose: Check if the input date is valid (set a format).
 bool isValidDate(const std::string& date) { 
     if (date.length() != 10 || date[2] != '/' || date[5] != '/') return false; 
     std::string dayStr = date.substr(0, 2), monthStr = date.substr(3, 2), yearStr = date.substr(6, 4); 
@@ -114,7 +138,9 @@ bool isValidDate(const std::string& date) {
     } 
 }
 
- 
+// Programmers: Lim Yean Zhen
+// Matric No. : 23304009
+// Purpose: Get a valid patient's admission date from the user (format: DD/MM/YYYY).
 string getValidDate() {
     string date;
     cout << "\033[1;36mEnter Admission Date (DD/MM/YYYY): \033[0m";
@@ -128,6 +154,9 @@ string getValidDate() {
     return date;
 }
 
+// Programmers: Lim Yean Zhen
+// Matric No. : 23304009
+// Purpose: Retrieve the set of assigned ward numbers from file.
 set<int> getAssignedWards() { 
     set<int> assignedWards; 
     ifstream file("patients.txt"); 
@@ -149,7 +178,10 @@ set<int> getAssignedWards() {
     } 
     return assignedWards; 
 } 
- 
+
+// Programmers: Lim Yean Zhen
+// Matric No. : 23304009
+// Purpose: Assign a random ward number for patient.
 int assignRandomWard(const set<int>& assignedWards) { 
     if (assignedWards.size() >= 899) return -1;  
     int ward; 
@@ -159,6 +191,11 @@ int assignRandomWard(const set<int>& assignedWards) {
     return ward; 
 }
 
+// Programmers: Lim Yean Zhen
+// Matric No. : 23304009
+// Purpose: Get a age input of patient (between 0 and 100).
+// Purpose: Get a gender input of patient (Male/Female).
+// Purpose: Admit a patient by gathering all information from input and saving it to a file.
 void admitPatient() { 
     ofstream file("patients.txt", ios::app); 
     if (!file) { 
@@ -173,22 +210,25 @@ void admitPatient() {
         cout << "\033[1;31mAll ward numbers are occupied. Cannot admit new patients!\033[0m\n"; 
         return; 
     } 
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');  
+    cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
+
     string name = getValidName(); 
      
     int age;
+
     cout << "\033[1;36mEnter Age: \033[0m";
     while (!(cin >> age) || age <= 0 || age > 100) 
     {
         cout << "\033[1;31mInvalid input! Age must be between 0 and 100: \033[0m";
         cin.clear();
-        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
-    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
     string ic = getValidIC();
  
-    string gender, wardPrefix; 
+    string gender, wardPrefix;
+
     cout << "\033[1;36mEnter Gender (Male/Female): \033[0m"; 
     while (true) { 
         getline(cin, gender); 
@@ -204,6 +244,7 @@ void admitPatient() {
     string reason = getValidReason();
     
     string date = getValidDate(); 
+
     file << name << "," << age << "," << ic << "," << gender << "," << contact << "," << reason << "," << date << "," << wardPrefix << ward << endl; 
     file.close(); 
  

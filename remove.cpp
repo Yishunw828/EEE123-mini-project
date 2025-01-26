@@ -1,6 +1,3 @@
-// Programmers: 
-// Purpose: Function to remove a patient from patients.txt by name.
-
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -8,6 +5,9 @@
 
 using namespace std;
 
+// Programmers: Muhammad Ammer Asyraff bin Mohd Farid
+// Matric No. : 22306881
+// Purpose: Remove a patient's record from the file based on patient's name.
 void removePatient() {
     string nameToRemove;
     cout << "\033[1;36m\nEnter patient name to remove: \033[0m";
