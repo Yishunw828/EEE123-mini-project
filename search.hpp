@@ -7,7 +7,7 @@
 void searchMenu();
 void searchByName();
 void searchByWard();
-bool ValidDate(const std::string& date);
+bool ValidDate(const tring& date);
 void searchByDate();
 
 #endif
